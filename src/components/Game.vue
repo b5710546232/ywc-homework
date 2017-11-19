@@ -1,20 +1,20 @@
 <template>
     <div class="game">   
+        <div class="game-stage">
+            <div class="message-area">
+                <div class="text">
+                    <span style="color:#6272a4;">{{previous}}</span>
+                    <span :style="currentStyle" v-html="current"></span>
+                    <span style="color:#8be9fd;">{{next}}</span>
+                </div>
+            </div>
 
-        <div class="message-area container">
-            <div class="text">
-                <span style="color:grey;">{{previous}}</span>
-                <span :style="currentStyle" v-html="current"></span>
-                <span style="color:blue;">{{next}}</span>
+            <div class="input-control">
+                <input placeholder="type here ..." ref="input" class="form-control input-text" :disabled="isGameComplete" :style="inputStyle" type="text" v-model="textInput" @input="onInput">
             </div>
         </div>
-
-        <div class="input-text container">
-            <input class="form-control" v-if="!isGameComplete" :style="inputStyle" type="text" v-model="textInput" @input="onInput">
-            <button v-if="isGameComplete" type="button" class="btn btn-primary" @click="initGame()">play again</button>
-            <p>wpm : {{wpm}}</p>
-        </div>
-
+        <button v-if="isGameComplete" type="button" class="btn btn-primary" @click="initGame()">play again</button>
+        <p v-if="wpm.length>0">wpm : {{wpm}}</p>
     </div>
 </template>
 
@@ -24,6 +24,7 @@
         name: 'Game',
         mounted() {
          this.initGame()
+        //  this.$refs.input.focus()
         },
         computed: {
             previous() {
@@ -42,11 +43,11 @@
             //         for(let i=0;i<this.current.length;i++){
             //             console.log(this.current[i],this.textInput[i])
             //             if(this.current[i]===this.textInput[i]){
-            //                 displayText += '<span style="color:green;">'+this.current[i]+'</span>'
+            //                 displayText += '<span style="color:#50fa7b;">'+this.current[i]+'</span>'
             //             }else if(this.current[this.textInput.length-1]!==this.textInput[this.textInput.length-1] && this.textInput.length<this.current.legnth){
-            //                 displayText += '<span style="color:red;">'+this.current[i]+'</span>'
+            //                 displayText += '<span style="color:#ff5555;">'+this.current[i]+'</span>'
             //             } else{
-            //                 displayText += '<span style="color:grey;">'+this.current[i]+'</span>'
+            //                 displayText += '<span style="color:#6272a4;">'+this.current[i]+'</span>'
             //             }
             //         }
             //         // console.log('dis',displayText)
@@ -58,7 +59,7 @@
                 msg: '',
                 textInput: '',
                 charDone: 0,
-                currentStyle: 'color:green;text-decoration: underline;',
+                currentStyle: 'color:#50fa7b;text-decoration: underline;',
                 inputStyle:'',
                 wpm:'',
                 isGameStart:false,
@@ -82,7 +83,7 @@
                 // reset
                 this.textInput = ''
                 this.charDone =  0
-                this.currentStyle = 'color:green;text-decoration: underline;'
+                this.currentStyle = 'color:#50fa7b;text-decoration: underline;'
                 this.inputStyle = ''
                 this.wpm = ''
                 this.isGameStart = false
@@ -98,6 +99,9 @@
                     targetItems.push(item)
                 }
                 this.msg = this.generateMessage(targetItems)
+                setTimeout(()=>{
+                    this.$refs.input.focus()
+                },10)
 
             },
             onInput(event) {
@@ -109,24 +113,28 @@
                 console.log('on-type', this.textInput, this.current)
                 if (event.data === ' ') {
                     if (this.current === this.textInput.split(' ').join('')) {
+                        // type correct
                         this.charDone += this.textInput.split(' ')[0].length + 1
                         console.log('charDone', this.charDone)
                         this.textInput = '' // clear
-                        this.currentStyle = 'color:green;'
+                        this.currentStyle = 'color:#50fa7b;text-decoration: underline;'
                         // Gross WPM = (All typed entires / 5 ) / Time(min)
                         const TIMEMIN = 60000
                         this.wpm = ( this.charDone / 5 / ( (Date.now() - this.startTime ) / TIMEMIN) ).toFixed(0)
                     } else {
-                        this.currentStyle = 'color:red;'
+                        // type wrong
+                        this.currentStyle = 'color:#f8f8f2;background:#ff5555;'
                     }
                 } else {
                     for (let i = 0; i < this.current.length; i++) {
                         console.log(this.current[i], this.textInput[i])
                         if (this.current[this.textInput.length - 1] !== this.textInput[this.textInput.length - 1]) {
-                            this.currentStyle = 'color:red;background:#ff9bad;'
-                            this.inputStyle = 'color:red;background:#ff9bad;'
+                            this.currentStyle = 'color:#f8f8f2;background:#ff5555;'
+                            // old #ff9bad
+                            // new #ff79c6
+                            this.inputStyle = 'color:#f8f8f2;background:#ff5555;'
                         } else {
-                            this.currentStyle = 'color:green;text-decoration: underline;'
+                            this.currentStyle = 'color:#50fa7b;text-decoration: underline;'
                             this.inputStyle = ''
                         }
                     }
@@ -146,12 +154,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    span#current-text {
-        z-index: 1;
-        letter-spacing: 10px;
-        color: #fff;
+    .game-stage{
+        border: 1px solid #bd93f9;
+        background:#282a36;
+        margin:10px;
+        margin-top:10%;
     }
-    
     .text {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -159,22 +167,29 @@
         font-size: 26px;
     }
     .message-area{
-        border:1px solid red;
-        padding:1%;
-        margin-top:12%;
-        margin-bottom:5%;
+        /*border:1px solid #ff5555;*/
+        border : none;
+        padding-left:1%;
+        padding-right:1%;
+        padding-bottom:5%;
+        padding-top:1%;
     }
-    
-    span#current-text:before {
-        /* pink boxes */
-        content: '';
-        top: 0;
-        left: 0;
-        background: red;
-        z-index: -1;
-        height: 100%;
-        width: 100%;
-        background-image: -webkit-repeating-linear-gradient(right, pink, pink 50px, transparent 50px, transparent 55px, pink 55px, pink 105px, transparent 105px, transparent 110px, pink 110px, pink 160px, transparent 160px, transparent 176px);
-        background-image: -moz-repeating-linear-gradient(right, pink, pink 50px, transparent 50px, transparent 55px, pink 55px, pink 105px, transparent 105px, transparent 110px, pink 110px, pink 160px, transparent 160px, transparent 176px);
+    .input-text{
+        background:#282a36;
+        color:#f8f8f2;
+        border-top: 1px solid #bd93f9;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        border-radius: 0px;
+    }
+    .input-text:focus{
+        background:#282a36;
+        color:#f8f8f2;
+        border-top: 1px solid #bd93f9;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        border-radius: 0px;
     }
 </style>

@@ -4,11 +4,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <router-link class="navbar-brand" to="/" >Navbar</router-link>
+  <router-link class="navbar-brand" to="/">Navbar</router-link>
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <router-link class="nav-link" to="/" >Home</router-link>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <router-link class="nav-link" to="/">Home</router-link>
         </li>
         <li class="nav-item">
         <router-link class="nav-link" to="/game">Typing memo friend</router-link>
@@ -17,3 +17,21 @@
     </div>
   </nav>
   </template>
+  <style>
+  /*cyan #8be9fd */
+  .active{
+    background:#1c1e26;
+  }
+  .navbar-brand{
+    color:#8be9fd!important;
+  }
+  .nav-link{
+    color:#8be9fd!important;
+  }
+  .nav-link:hover{
+    color:#bd93f9!important;
+  }
+  .bg-inverse{
+    background-color:#282a36!important;
+  }
+  </style>
