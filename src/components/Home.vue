@@ -1,7 +1,21 @@
 <template>
   <div class="home">
-  
-    <input type="text" v-model="search"> {{filterAnnouncementList}}
+    <div class="container" style="background:red;">
+      <input class="form-control mr-sm-2 text" type="text" v-model="search" placeholder="Search">
+    </div>
+
+    <!--<div class="">{{filterAnnouncementList | filterMajor('content')}}</div> -->
+    <div>
+    <ul>
+      <li v-for="interviewee in filterAnnouncementList">
+        {{ interviewee.interviewRef }}
+        {{ interviewee.firstName }}
+        {{ interviewee.lastName }}
+      </li>
+    </ul>
+
+    </div>
+    
   </div>
 </template>
 
@@ -11,35 +25,39 @@
   export default {
     name: 'Home',
     mounted () {
-      console.log('ready', announcementList)
-      this.announcementList = []
-      // JSON.parse(JSON.stringify(announcementList))
-      // https://ywc15.ywc.in.th/
-      const options = {
-        // proxy: {
-        //   host: 'https://ywc15.ywc.in.th/',
-        // },
-      }
-      const API = 'https://ywc15.ywc.in.th/static/announcement.json'
-      axios.get(API, options).then((response) => {
-        console.log(response)
+      console.log('ready')
+      const API = 'https://ywc15.ywc.in.th/api/interview'
+      axios.get(API).then((response) => {
+        this.announcementList = response.data
       }).catch((error) => {
         console.error(error)
       })
     },
+    filters: {
+      filterMajor(interviewees,major){
+        if (!interviewees) return ''
+        let result =  interviewees.filter((interviewee) => {
+          console.log(' interviewee.major =', interviewee.major === major)
+            return interviewee.major === major
+        } )
+        console.log('majorProgramming',result,interviewees)
+        return result
+      }
+    },
     computed: {
       filterAnnouncementList () {
         return this.announcementList.filter(interviewee => {
-          return interviewee.firstName.includes(this.search) ||
-            interviewee.lastName.includes(this.search) ||
-            interviewee.interviewRef.includes(this.search) ||
-            interviewee.major.includes(this.search)
+          let searchText = this.search.replace(' ','')
+          return (interviewee.firstName
+          + interviewee.lastName
+          + interviewee.interviewRef
+          + interviewee.major
+          ).includes(searchText)
         })
       }
     },
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App',
         search: '',
         announcementList: []
       }
@@ -55,12 +73,10 @@
   }
   
   ul {
-    list-style-type: none;
     padding: 0;
   }
   
   li {
-    display: inline-block;
     margin: 0 10px;
   }
   

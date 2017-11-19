@@ -1,14 +1,20 @@
 <template>
-    <div class="game">    
-        <div class="text container">
-            <span style="color:grey;">{{previous}}</span>
-            <span :style="currentStyle" v-html="current"></span>
-            <span style="color:blue;">{{next}}</span>
+    <div class="game">   
+
+        <div class="message-area container">
+            <div class="text">
+                <span style="color:grey;">{{previous}}</span>
+                <span :style="currentStyle" v-html="current"></span>
+                <span style="color:blue;">{{next}}</span>
+            </div>
         </div>
-        <!--<input-box :on-type="onType" :text-input="textInput"></input-box> -->
-        <div class="input-text">
-            <input :style="inputStyle" type="text" v-model="textInput" @input="onInput">
+
+        <div class="input-text container">
+            <input class="form-control" v-if="!isGameComplete" :style="inputStyle" type="text" v-model="textInput" @input="onInput">
+            <button v-if="isGameComplete" type="button" class="btn btn-primary" @click="initGame()">play again</button>
+            <p>wpm : {{wpm}}</p>
         </div>
+
     </div>
 </template>
 
@@ -17,20 +23,7 @@
     export default {
         name: 'Game',
         mounted() {
-            let tempList = announcementList.map(o => o)
-            let targetItems = []
-            for (let i = 0; i < 10; i++) {
-                let item = tempList[Math.floor(Math.random() * tempList.length)];
-                tempList.splice(tempList.indexOf(item), 1)
-                targetItems.push(item)
-            }
-    
-            //generate string
-            for (let item of targetItems) {
-                this.msg += [item.firstName.replace(' ', ''), item.lastName.replace(' ', '')].join(' ') + ' '
-            }
-    
-            console.log('item', targetItems)
+         this.initGame()
         },
         computed: {
             previous() {
@@ -65,12 +58,54 @@
                 msg: '',
                 textInput: '',
                 charDone: 0,
-                currentStyle: 'color:green;',
-                inputStyle:''
+                currentStyle: 'color:green;text-decoration: underline;',
+                inputStyle:'',
+                wpm:'',
+                isGameStart:false,
+                isGameComplete:false,
+                startTime:0
             }
         },
         methods: {
+            generateMessage(targetItems){
+                let msg = ''
+                for (let item of targetItems) {
+                    let firstName = item.firstName.replace(' ', '').replace('\u200b','').match(/^\S+[u0E00-\u0E7Fa-zA-Z' ]|^'|'$|''/)[0]
+                    console.log('first-name',firstName)
+                    let lastName = item.lastName.replace(' ', '').match(/^\S+[u0E00-\u0E7Fa-zA-Z' ]|^'|'$|''/)[0]
+                    .replace('\u200b','')
+                    msg += [firstName, lastName].join(' ') + ' '
+                }
+                return msg
+            },
+            initGame () {
+                // reset
+                this.textInput = ''
+                this.charDone =  0
+                this.currentStyle = 'color:green;text-decoration: underline;'
+                this.inputStyle = ''
+                this.wpm = ''
+                this.isGameStart = false
+                this.isGameComplete = false
+                this.startTime = 0
+
+                let tempList = announcementList.map(o => o)
+                let targetItems = []
+                let ranNumber = 2
+                for (let i = 0; i < ranNumber; i++) {
+                let item = tempList[Math.floor(Math.random() * tempList.length)];
+                    tempList.splice(tempList.indexOf(item), 1)
+                    targetItems.push(item)
+                }
+                this.msg = this.generateMessage(targetItems)
+
+            },
             onInput(event) {
+                if(!this.isGameStart){
+                    this.isGameStart = true
+                    this.startTime = Date.now()
+                    this.wpm = ''
+                }
                 console.log('on-type', this.textInput, this.current)
                 if (event.data === ' ') {
                     if (this.current === this.textInput.split(' ').join('')) {
@@ -78,6 +113,9 @@
                         console.log('charDone', this.charDone)
                         this.textInput = '' // clear
                         this.currentStyle = 'color:green;'
+                        // Gross WPM = (All typed entires / 5 ) / Time(min)
+                        const TIMEMIN = 60000
+                        this.wpm = ( this.charDone / 5 / ( (Date.now() - this.startTime ) / TIMEMIN) ).toFixed(0)
                     } else {
                         this.currentStyle = 'color:red;'
                     }
@@ -88,12 +126,19 @@
                             this.currentStyle = 'color:red;background:#ff9bad;'
                             this.inputStyle = 'color:red;background:#ff9bad;'
                         } else {
-                            this.currentStyle = 'color:green;'
+                            this.currentStyle = 'color:green;text-decoration: underline;'
                             this.inputStyle = ''
                         }
                     }
                 }
+
+                if(this.charDone===this.msg.length){
+                    this.onComplete()
+                }
     
+            },
+            onComplete(){
+                this.isGameComplete = true
             }
         }
     }
@@ -111,10 +156,13 @@
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        /* fallback */
-        -webkit-line-clamp: 2;
-        /* number of lines to show */
-        -webkit-box-orient: vertical;
+        font-size: 26px;
+    }
+    .message-area{
+        border:1px solid red;
+        padding:1%;
+        margin-top:12%;
+        margin-bottom:5%;
     }
     
     span#current-text:before {

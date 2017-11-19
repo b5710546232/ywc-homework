@@ -3,24 +3,17 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-    <a class="navbar-brand" href="#">Navbar</a>
 
+  <router-link class="navbar-brand" to="/" >Navbar</router-link>
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <router-link class="nav-link" to="/" >Home</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Feature2</a>
+        <router-link class="nav-link" to="/game">Typing memo friend</router-link>
         </li>
       </ul>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </div>
   </nav>
   </template>
