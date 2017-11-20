@@ -24,7 +24,6 @@
         name: 'Game',
         mounted() {
          this.initGame()
-        //  this.$refs.input.focus()
         },
         computed: {
             previous() {
@@ -37,22 +36,6 @@
                 console.log('next', this.current.length)
                 return this.msg.substr(this.charDone + this.current.length)
             }
-            // ,
-            // currentDisplay(){
-            //     let displayText = ''
-            //         for(let i=0;i<this.current.length;i++){
-            //             console.log(this.current[i],this.textInput[i])
-            //             if(this.current[i]===this.textInput[i]){
-            //                 displayText += '<span style="color:#50fa7b;">'+this.current[i]+'</span>'
-            //             }else if(this.current[this.textInput.length-1]!==this.textInput[this.textInput.length-1] && this.textInput.length<this.current.legnth){
-            //                 displayText += '<span style="color:#ff5555;">'+this.current[i]+'</span>'
-            //             } else{
-            //                 displayText += '<span style="color:#6272a4;">'+this.current[i]+'</span>'
-            //             }
-            //         }
-            //         // console.log('dis',displayText)
-            //     return displayText
-            // }
         },
         data() {
             return {

@@ -20,18 +20,20 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import { getInterviewees } from '../utils/services'
   import announcementList from '../json/announcement.json'
   export default {
     name: 'Home',
     mounted () {
       console.log('ready')
-      const API = 'https://ywc15.ywc.in.th/api/interview'
-      axios.get(API).then((response) => {
-        this.announcementList = response.data
-      }).catch((error) => {
-        console.error(error)
-      })
+      getInterviewees()
+        .then( (announcementList) => {
+          // sort
+          announcementList = announcementList.sort((a, b) => {
+            return a.interviewRef.localeCompare(b.interviewRef)
+          })
+          this.announcementList = announcementList
+        })
     },
     filters: {
       filterMajor(interviewees,major){
