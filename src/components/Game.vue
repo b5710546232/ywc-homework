@@ -1,5 +1,8 @@
 <template>
-    <div class="game">   
+    <div class="game vivify fadeIn">   
+        <div class="header">
+        <p class="header-typed"></p>
+        </div>
         <div class="game-stage">
             <div class="message-area">
                 <div class="text">
@@ -8,22 +11,30 @@
                     <span style="color:#8be9fd;">{{next}}</span>
                 </div>
             </div>
-
             <div class="input-control">
-                <input placeholder="type here ..." ref="input" class="form-control input-text" :disabled="isGameComplete" :style="inputStyle" type="text" v-model="textInput" @input="onInput">
+                <input placeholder="type here ..." ref="input" class="form-control input-text" :disabled="isGameComplete||!isGameReady" :style="inputStyle" type="text" v-model="textInput" @input="onInput">
             </div>
         </div>
-        <button v-if="isGameComplete" type="button" class="btn btn-primary" @click="initGame()">play again</button>
-        <p v-if="wpm.length>0">wpm : {{wpm}}</p>
+        <button v-if="isGameComplete" type="button" class="btn btn-outline-primary" @click="initGame()">play again</button>
+        <p  class="wpm-text" v-if="wpm.length>0">wpm : {{wpm}}</p>
     </div>
 </template>
 
 <script>
-    import announcementList from '../json/announcement.json'
+    import Typed from 'typed.js';
+    import { getInterviewees } from '../utils/services'
     export default {
         name: 'Game',
         mounted() {
          this.initGame()
+         var options = {
+        strings: ["<i>Let's</i> type.", "Your friends name :)","Just start typing"],
+        typeSpeed: 100,
+        showCursor:false,
+        backSpeed:50
+        }
+
+        var typed = new Typed(".header-typed", options);
         },
         computed: {
             previous() {
@@ -40,6 +51,7 @@
         data() {
             return {
                 msg: '',
+                isGameReady:false,
                 textInput: '',
                 charDone: 0,
                 currentStyle: 'color:#50fa7b;text-decoration: underline;',
@@ -65,6 +77,7 @@
             initGame () {
                 // reset
                 this.textInput = ''
+                this.isGameReady = false
                 this.charDone =  0
                 this.currentStyle = 'color:#50fa7b;text-decoration: underline;'
                 this.inputStyle = ''
@@ -72,19 +85,22 @@
                 this.isGameStart = false
                 this.isGameComplete = false
                 this.startTime = 0
+                getInterviewees().then((interviewwees) => {
+                    this.isGameReady = true
+                    let tempList = interviewwees.map(o => o)
+                    let targetItems = []
+                    let ranNumber = 5 /* number of name */
+                    for (let i = 0; i < ranNumber; i++) {
+                    let item = tempList[Math.floor(Math.random() * tempList.length)];
+                        tempList.splice(tempList.indexOf(item), 1)
+                        targetItems.push(item)
+                    }
+                    this.msg = this.generateMessage(targetItems)
+                    setTimeout(()=>{
+                        this.$refs.input.focus()
+                    },10)
 
-                let tempList = announcementList.map(o => o)
-                let targetItems = []
-                let ranNumber = 2
-                for (let i = 0; i < ranNumber; i++) {
-                let item = tempList[Math.floor(Math.random() * tempList.length)];
-                    tempList.splice(tempList.indexOf(item), 1)
-                    targetItems.push(item)
-                }
-                this.msg = this.generateMessage(targetItems)
-                setTimeout(()=>{
-                    this.$refs.input.focus()
-                },10)
+                })
 
             },
             onInput(event) {
@@ -95,7 +111,7 @@
                 }
                 console.log('on-type', this.textInput, this.current)
                 if (event.data === ' ') {
-                    if (this.current === this.textInput.split(' ').join('')) {
+                    if (this.current === this.textInput.slice(0,this.textInput.length-1)){
                         // type correct
                         this.charDone += this.textInput.split(' ')[0].length + 1
                         console.log('charDone', this.charDone)
@@ -137,17 +153,39 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .wpm-text{
+        font-size:1.5em;
+    }
+    .game{
+        color:#f8f8f2;
+    }
+    .header{
+        font-size:2em;
+        color:#bd93f9;
+        height:2em;
+    }
     .game-stage{
+        position:relative;
         border: 1px solid #bd93f9;
         background:#282a36;
         margin:10px;
-        margin-top:10%;
+        margin-top:2%;
     }
     .text {
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         font-size: 26px;
+    }
+
+    .btn-outline-primary{
+        color:#bd93f9;
+        border-color:#bd93f9;
+        border-radius:0;
+    }
+     .btn-outline-primary:hover{
+        background:#282a36;
+        color:#bd93f9;;
     }
     .message-area{
         /*border:1px solid #ff5555;*/
