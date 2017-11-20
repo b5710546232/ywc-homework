@@ -88,7 +88,8 @@
   }
   .list-item{
     border-radius:0px;
-    background:#3C4555;
+    background:#303844;
+    /*#3C4555;*/
     border-color:#bd93f9;
     color:#f8f8f2;
   }

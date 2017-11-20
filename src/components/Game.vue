@@ -15,7 +15,7 @@
                 <input placeholder="type here ..." ref="input" class="form-control input-text" :disabled="isGameComplete||!isGameReady" :style="inputStyle" type="text" v-model="textInput" @input="onInput">
             </div>
         </div>
-        <button v-if="isGameComplete" type="button" class="btn btn-outline-primary" @click="initGame()">play again</button>
+        <button v-if="isGameComplete" type="button" class="btn btn-outline-primary btn-playagain" @click="initGame()">play again</button>
         <p  class="wpm-text" v-if="wpm.length>0">wpm : {{wpm}}</p>
     </div>
 </template>
@@ -153,6 +153,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .btn-playagain{
+        font-size:1.5em;
+    }
     .wpm-text{
         font-size:1.5em;
     }
