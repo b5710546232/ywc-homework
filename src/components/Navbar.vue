@@ -3,8 +3,12 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <router-link class="navbar-brand navbar-brand-lg hidden-md-down" to="/">Navbar</router-link>
-  <router-link class="navbar-brand hidden-lg-up" to="/">Navbar</router-link>
+  <router-link class="navbar-brand navbar-brand-lg hidden-md-down" to="/">
+  <img class="logo" src="src/assets/img/logo.png" alt="">
+  </router-link>
+  <router-link class="navbar-brand hidden-lg-up" to="/">
+    <img class="logo" src="src/assets/img/logo.png" alt="">
+  </router-link>
      <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -31,6 +35,14 @@
     left: 50%;
     margin-left: -50px !important;  /* 50% of your logo width */
     display: block;
+  }
+  
+  .logo{
+    min-width:10%;
+    min-height:10%;
+    max-width:18%;
+    max-height:18%;
+    float:left;
   }
   .navbar-brand{
     color:#8be9fd!important;
