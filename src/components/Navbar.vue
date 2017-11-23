@@ -1,5 +1,5 @@
 <template>
-   <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+   <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -15,7 +15,7 @@
           <router-link class="nav-link" to="/">Home</router-link>
         </li>
         <li class="nav-item">
-        <router-link class="nav-link" to="/game">Typing memo friend</router-link>
+        <router-link class="nav-link" to="/game"><span>Typing memo friend</span></router-link>
         </li>
       </ul>
     </div>
@@ -56,6 +56,6 @@
     color:#bd93f9!important;
   }
   .bg-inverse{
-    background-color:#282a36!important;
+    background-color:transparent!important;
   }
   </style>

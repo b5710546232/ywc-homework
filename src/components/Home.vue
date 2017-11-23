@@ -1,15 +1,26 @@
 <template>
     <div class="home vivify fadeIn">
+    <section style="width:100%;height:70vh;background:#282a36;">
+    test</section>
         <div class="container search-box-container">
-              <input class="form-control mr-sm-2" type="text" v-model="search" placeholder="Search name ..." autofocus>
+            <div class="inner-addon left-addon">
+                  <i class="fa fa-search"></i>
+                  <input class="form-control mr-sm-2" type="text" v-model="search" placeholder="ค้นหารายชื่อ" autofocus>
+            </div>
         </div>
-
         <div class="container result-area">
             <div class="row">
                 <div class="col-lg-3 col-md-6" v-for="major in majorGroups" v-if="filterMajorList(filterAnnouncementList,major).length>0">
                     <ul class="list-group">
-                        <li class="list-group-item active list-header">Major : web {{major}}</li>
-                        <li class="list-group-item list-item" v-for="interviewee in filterMajorList(filterAnnouncementList,major)">{{interviewee.interviewRef}} {{interviewee.firstName}} {{interviewee.lastName}}</li>
+                        <li class="list-group-item active list-header text-left"><strong>{{major.toUpperCase()}}</strong></li>
+                        <li class="list-group-item list-item text-left" v-for="interviewee in filterMajorList(filterAnnouncementList,major)">
+                        <div class="container">
+                          <div class="row">
+                        <div class="col-3 item-ref font-400">{{interviewee.interviewRef}}</div>
+                          <div class="col-9 item-ref">{{interviewee.firstName}} {{interviewee.lastName}}</div>
+                        </div>
+                        </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -52,10 +63,13 @@
         return this.announcementList.filter(interviewee => {
           let searchText = this.search.replace(' ','')
           console.warn('searchText',searchText)
-          let joinedString = (interviewee.firstName
-          + interviewee.lastName
-          + interviewee.interviewRef
-          + interviewee.major)
+          let joinedString = 
+          (
+            interviewee.firstName.trim()
+          + interviewee.lastName.trim()
+          + interviewee.interviewRef.trim()
+          + interviewee.major.trim()
+          )
           return (joinedString).includes(searchText)
         })
       }
@@ -72,36 +86,84 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .fa {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .fa  { left:  0px;}
+.right-addon .fa { right: 0px;}
+
+.input-group-addon{
+  background:#282a36;
+  color:#bd93f9;
+  border-color:transparent;
+}
+*{
+  border-radius:0px;
+}
+.fa {
+  color:#bd93f9;
+  font-size:1.5em;
+}
   .search-box-container{
     position:relative;
-    margin-top:80px;
+    margin-top:50px;
     margin-bottom:10px;
-  }
-  .search-box-container{
-    padding:17px;
+    background:#282a36;
+    padding:12px 25px;
   }
   .list-header{
     border-radius:0px;
     background:#282a36;
-    border-color:#bd93f9;
+    border:0;
     color:#bd93f9;
+    font-weight:700;
   }
   .list-item{
     border-radius:0px;
     background:#303844;
-    /*#3C4555;*/
-    border-color:#bd93f9;
+    /*border-color:#bd93f9;
+    border-top:0px;*/
+    margin-top:5px;
     color:#f8f8f2;
+  }
+  .item-ref{
+    padding:0;
   }
   .list-group{
     margin-top:16px;
     margin-bottom:16px;
   }
+  .form-control:hover, .form-control:focus{
+    border-top:transparent;
+    border-left:transparent;
+    border-right:transparent;
+    border-bottom:2px solid #bd93f9;
+  }
   .form-control{
+    font-size:1.5em;
+    font-family: 'Athiti', sans-serif;
+    font-weight:600;
+    padding-left:50px;
     border-radius:0px;
-    background:	#282a36;
-    border-color:#bd93f9;
+    background:transparent;
     color:#f8f8f2;
+    border-top:transparent;
+    border-left:transparent;
+    border-right:transparent;
+    border-bottom:2px solid #636C71;
+  }
+  .font-400{
+    font-weight:600;
   }
   h1,
   h2 {
