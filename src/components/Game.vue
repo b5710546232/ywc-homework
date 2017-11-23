@@ -1,7 +1,7 @@
 <template>
     <div class="game vivify fadeIn">   
         <div class="header">
-        <p class="header-typed"></p>
+        <p class="header-typed" style="height:100px;"> ... </p>
         </div>
         <div class="game-stage">
             <div class="message-area">
@@ -12,7 +12,14 @@
                 </div>
             </div>
             <div class="input-control">
-                <input placeholder="type here ..." ref="input" class="form-control input-text" :disabled="isGameComplete||!isGameReady" :style="inputStyle" type="text" v-model="textInput" @input="onInput">
+                <div class="input-box-container">
+            <div class="inner-addon left-addon">
+                <i class="fa fa-keyboard-o"></i>
+                <input placeholder="type here ..." ref="input" class="form-control" :disabled="isGameComplete||!isGameReady" :style="inputStyle" type="text" v-model="textInput" @input="onInput">
+            </div>
+        </div>
+
+
             </div>
         </div>
         <button v-if="isGameComplete" type="button" class="btn btn-outline-primary btn-playagain" @click="initGame()">play again</button>
@@ -153,6 +160,43 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+    .inner-addon { 
+        position: relative; 
+    }
+
+    /* style icon */
+    .inner-addon .fa {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+    }
+
+    /* align icon */
+    .left-addon .fa  { left:  0px;}
+    .right-addon .fa { right: 0px;}
+
+    .input-group-addon{
+    background:#282a36;
+    color:#bd93f9;
+    border-color:transparent;
+    }
+
+    .fa {
+        color:#bd93f9;
+        font-size:1.5em;
+    }
+    .input-box-container{
+        position:relative;
+        margin-top:50px;
+        margin-bottom:10px;
+        background:#282a36;
+        padding:12px 25px;
+    }
+
+    *{
+        border-radius:0;
+    }
     .btn-playagain{
         font-size:1.5em;
     }
@@ -169,8 +213,8 @@
     }
     .game-stage{
         position:relative;
-        border: 1px solid #bd93f9;
-        background:#282a36;
+        /*background:#282a36;*/
+        padding:1%;
         margin:10px;
         margin-top:2%;
     }
@@ -184,7 +228,7 @@
     .btn-outline-primary{
         color:#bd93f9;
         border-color:#bd93f9;
-        border-radius:0;
+        border:2px solid;
     }
      .btn-outline-primary:hover{
         background:#282a36;
@@ -192,28 +236,31 @@
     }
     .message-area{
         /*border:1px solid #ff5555;*/
-        border : none;
+        background:#282a36;
         padding-left:1%;
         padding-right:1%;
         padding-bottom:5%;
         padding-top:1%;
+        margin-bottom:25px;
     }
-    .input-text{
-        background:#282a36;
-        color:#f8f8f2;
-        border-top: 1px solid #bd93f9;
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
-        border-radius: 0px;
-    }
-    .input-text:focus{
-        background:#282a36;
-        color:#f8f8f2;
-        border-top: 1px solid #bd93f9;
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
-        border-radius: 0px;
-    }
+    
+  .form-control:hover, .form-control:focus{
+    border-top:transparent;
+    border-left:transparent;
+    border-right:transparent;
+    border-bottom:2px solid #bd93f9;
+  }
+  .form-control{
+    font-size:1.5em;
+    font-family: 'Athiti', sans-serif;
+    font-weight:600;
+    padding-left:50px;
+    border-radius:0px;
+    background:transparent;
+    color:#f8f8f2;
+    border-top:transparent;
+    border-left:transparent;
+    border-right:transparent;
+    border-bottom:2px solid #636C71;
+  }
 </style>
