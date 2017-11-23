@@ -4,10 +4,10 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <router-link class="navbar-brand navbar-brand-lg hidden-md-down" to="/">
-  <img class="logo" src="src/assets/img/logo.png" alt="">
+  <img class="logo" src="../assets/logo.png" alt="">
   </router-link>
   <router-link class="navbar-brand hidden-lg-up" to="/">
-    <img class="logo" src="src/assets/img/logo.png" alt="">
+    <img class="logo" src="../assets/logo.png" alt="">
   </router-link>
      <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
