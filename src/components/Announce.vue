@@ -39,6 +39,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+        ul {
+            list-style-type: none;
+            padding-left:15px;
+        }
         a{
             color:#8be9fd;
         }
