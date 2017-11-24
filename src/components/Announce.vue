@@ -6,13 +6,13 @@
         <section class="container" style="">
             <h1>SEMI_FINAL ROUND</h1>
             <h2 class="sub-header">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h2>
-            <p>การสัมภาษณ์จะจัดขึ้นใน <span class="high-light underline">วันที่ 26 พฤศจิกายน 2560 ณ อาคาร ซี.พี.ทาวเวอร์ 1 (สีลม)</span> </p>
-            <p>ซึ่งจะแบ่งออกเป็น 2 รอบ คือ <span class="high-light underline">รอบช่วงเช้าตั้งแต่เวลา 9.00 น. ถึง 12.00 น.</span> และ รอบช่วงบ่ายตั้งแต่เวลา 13.00 น. ถึง 18.00 น.</p>
+            <p>การสัมภาษณ์จะจัดขึ้นใน <span class="high-light bold">วันที่ 26 พฤศจิกายน 2560 ณ อาคาร ซี.พี.ทาวเวอร์ 1 (สีลม)</span> </p>
+            <p>ซึ่งจะแบ่งออกเป็น 2 รอบ คือ <span class="high-light bold">รอบช่วงเช้าตั้งแต่เวลา 9.00 น. ถึง 12.00 น.</span> และ รอบช่วงบ่ายตั้งแต่เวลา 13.00 น. ถึง 18.00 น.</p>
             <h2 class="text-left">สิ่งที่ต้องเตรียมมาในวันสัมภาษณ์</h2>
             <ol class="ol text-left">
-                <li class=""><span class="high-light underline">บัตรประชาชน</span>สำหรับการแลกบัตรเข้าอาคาร ซี.พี.ทาวเวอร์ 1 (สีลม) และ <span class="high-light underline">บัตรนักศึกษา</span>สำหรับการลงทะเบียนสัมภาษณ์ กรุณาแต่งกายด้วยชุดนักศึกษา</li>
-                <li class=""><span class="high-light underline">การบ้านและสิ่งที่กรรมการสาขากำหนดไว้</span> กรุณาอ่านรายละเอียดการบ้านและสิ่งที่กรรมการให้เตรียมมาให้ครบถ้วน หากสาขาใดต้องใช้โน้ตบุ๊ค ควรชาร์ตแบตเตอรี่และเตรียมอินเทอร์เน็ตส่วนตัวมาให้พร้อม เนื่องจากสถานที่ไม่มีบริการอินเทอร์เน็ตให้ใช้</li>
-                <li class=""> <span class="high-light underline">Portfolio</span> สามารถนำมาประกอบการสัมภาษณ์ได้ สำหรับน้อง ๆ สาขาดีไซน์จะต้องนำ Portfolio มาด้วยทุกคน</li>
+                <li class=""><span class="high-light bold">บัตรประชาชน</span>สำหรับการแลกบัตรเข้าอาคาร ซี.พี.ทาวเวอร์ 1 (สีลม) และ <span class="high-light bold">บัตรนักศึกษา</span>สำหรับการลงทะเบียนสัมภาษณ์ กรุณาแต่งกายด้วยชุดนักศึกษา</li>
+                <li class=""><span class="high-light bold">การบ้านและสิ่งที่กรรมการสาขากำหนดไว้</span> กรุณาอ่านรายละเอียดการบ้านและสิ่งที่กรรมการให้เตรียมมาให้ครบถ้วน หากสาขาใดต้องใช้โน้ตบุ๊ค ควรชาร์ตแบตเตอรี่และเตรียมอินเทอร์เน็ตส่วนตัวมาให้พร้อม เนื่องจากสถานที่ไม่มีบริการอินเทอร์เน็ตให้ใช้</li>
+                <li class=""> <span class="high-light bold">Portfolio</span> สามารถนำมาประกอบการสัมภาษณ์ได้ สำหรับน้อง ๆ สาขาดีไซน์จะต้องนำ Portfolio มาด้วยทุกคน</li>
             </ol>
 
             <h2 class="text-left">การเดินทางมาสัมภาษณ์</h2>
@@ -79,11 +79,11 @@
         height:18%;
     }
     h1{
-        color:#bd93f9;
+        color:#8be9fd;
         margin-top:30px;
     }
     h2 {
-        color:#bd93f9;
+        color:#8be9fd;
         margin: 30px 0;
         font-size:1.6em;
     }
@@ -91,9 +91,9 @@
         margin-top:0px!important;
     }
     .high-light{
-        color:#8be9fd;
+        color:#50fa7b;
     }
-    .underline{
-        text-decoration: underline;
+    .bold{
+        font-weight:600;
     }
 </style>
