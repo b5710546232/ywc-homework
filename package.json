@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "scroll-to-element": "^2.0.0",
     "typed.js": "^2.0.6",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"

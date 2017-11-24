@@ -1,14 +1,15 @@
 <template>
     <div class="home vivify fadeIn">
     <section style="width:100%;height:70vh;background:#282a36;">
-    test</section>
-        <div class="container search-box-container">
+    test
+    </section>
+        <div id="search-area" class="container search-box-container">
             <div class="inner-addon left-addon">
                   <i class="fa fa-search"></i>
-                  <input class="form-control mr-sm-2" type="text" v-model="search" placeholder="ค้นหารายชื่อ" autofocus>
+                  <input class="form-control mr-sm-2" type="text" v-model="search" @click="scollTo('#search-area')" @input="scollTo('#search-area')"  placeholder="ค้นหารายชื่อ">
             </div>
         </div>
-        <div class="container result-area">
+        <div class="container result-area" style="height:80vh;">
             <div class="row">
                 <div class="col-lg-3 col-md-6" v-for="major in majorGroups" v-if="filterMajorList(filterAnnouncementList,major).length>0">
                     <ul class="list-group">
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+  import scrollToElement from 'scroll-to-element'
   import { getInterviewees } from '../utils/services'
   import announcementList from '../json/announcement.json'
   export default {
@@ -56,7 +58,15 @@
         } )
         console.log('majorProgramming',result,interviewees)
         return result
-      }
+      },
+      scollTo(e){
+      event.preventDefault()
+      scrollToElement(e, {
+        offset: -10,
+        ease: 'outBack',
+        duration: 500
+      })
+    },
     },
     computed: {
       filterAnnouncementList () {

@@ -47,6 +47,7 @@
     color:#bd93f9!important;
   }
   .bg-inverse{
-    background-color:transparent!important;
+    /*background-color:transparent!important; */
+    background-color:#282a36!important;
   }
   </style>
