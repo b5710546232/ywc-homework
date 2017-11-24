@@ -3,16 +3,19 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <router-link class="navbar-brand navbar-brand-lg" to="/">
+  <router-link class="navbar-brand navbar-brand-lg hidden-lg-up" to="/">
     <img class="logo" src="../assets/logo.png" alt="">
   </router-link>
      <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <router-link class="nav-link" to="/">Home</router-link>
+        <li class="nav-item" v-if="$route.name!='Home'">
+          <router-link class="nav-link" to="/"><strong>ประกาศผล</strong></router-link>
         </li>
-        <li class="nav-item">
-        <router-link class="nav-link" to="/game"><span>Typing memo friend</span></router-link>
+        <li class="nav-item" v-if="$route.name=='Home'">
+          <router-link class="nav-link" to="/"><strong>ค้นหารายชื่อ</strong></router-link>
+        </li>
+        <li class="nav-item" v-if="$route.name!='Game'">
+        <router-link class="nav-link" to="/game"><strong>มาพิมพ์ชื่อเพื่อนกัน!</strong></router-link>
         </li>
       </ul>
     </div>
@@ -41,10 +44,10 @@
   }
   
   .nav-link{
-    color:#8be9fd!important;
+    color:#bd93f9!important;
   }
   .nav-link:hover{
-    color:#bd93f9!important;
+    color:#8be9fd!important;
   }
   .bg-inverse{
     /*background-color:transparent!important; */

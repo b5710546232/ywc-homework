@@ -1,8 +1,6 @@
 <template>
-    <div class="home vivify fadeIn">
-    <section style="width:100%;height:70vh;background:#282a36;">
-    test
-    </section>
+    <div class="home">
+        <announce></announce>
         <div id="search-area" class="container search-box-container">
             <div class="inner-addon left-addon">
                   <i class="fa fa-search"></i>
@@ -33,6 +31,8 @@
 </template>
 
 <script>
+  import Game from '@/components/Game'
+  import Announce from '@/components/Announce'
   import scrollToElement from 'scroll-to-element'
   import { getInterviewees } from '../utils/services'
   import announcementList from '../json/announcement.json'
@@ -67,6 +67,9 @@
         duration: 500
       })
     },
+    },
+    components:{
+      Announce
     },
     computed: {
       filterAnnouncementList () {
@@ -126,7 +129,7 @@
 }
   .search-box-container{
     position:relative;
-    margin-top:50px;
+    margin-top:3%;
     margin-bottom:10px;
     background:#282a36;
     padding:12px 25px;

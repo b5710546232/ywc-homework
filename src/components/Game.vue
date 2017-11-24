@@ -35,9 +35,9 @@
         mounted() {
          this.initGame()
          var options = {
-        strings: ["<i>Let's</i> type.", "Your friends name :)","Just start typing"],
+        strings: ["","<i>มาพิมพ์ชื่อ เพื่อนๆของคุณกัน</i>", "พร้อมแล้ว ลุย!เลย"],
         typeSpeed: 100,
-        showCursor:false,
+        showCursor:true,
         backSpeed:50
         }
 
