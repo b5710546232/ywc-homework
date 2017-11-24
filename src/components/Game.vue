@@ -22,7 +22,7 @@
 
             </div>
         </div>
-        <button v-if="isGameComplete" type="button" class="btn btn-outline-primary btn-playagain" @click="initGame()">play again</button>
+        <button v-if="isGameComplete" type="button" class="btn btn-outline-primary btn-playagain" @click="initGame()">ลองอีกครั้ง</button>
         <p  class="wpm-text" v-if="wpm.length>0">wpm : {{wpm}}</p>
     </div>
 </template>
@@ -35,7 +35,7 @@
         mounted() {
          this.initGame()
          var options = {
-        strings: ["","<i>มาพิมพ์ชื่อ เพื่อนๆของคุณกัน</i>", "พร้อมแล้ว ลุย!เลย"],
+        strings: ["","<i>มาพิมพ์ชื่อ เพื่อนๆของคุณกัน</i>", "พร้อมแล้ว ลุย!"],
         typeSpeed: 100,
         showCursor:true,
         backSpeed:50
