@@ -60,7 +60,6 @@
         return result
       },
       scollTo(e){
-      event.preventDefault()
       scrollToElement(e, {
         offset: -10,
         ease: 'outBack',
