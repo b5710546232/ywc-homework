@@ -9,6 +9,7 @@
         </div>
         <div class="container result-area" style="height:80vh;">
             <div class="row">
+              <div class="col not-found-text" v-if="filterAnnouncementList.length<=0">ไม่พบรายชื่อ</div>
                 <div class="col-lg-3 col-md-6" v-for="major in majorGroups" v-if="filterMajorList(filterAnnouncementList,major).length>0">
                     <ul class="list-group">
                         <li class="list-group-item active list-header text-left"><strong>{{major.toUpperCase()}}</strong></li>
@@ -132,6 +133,11 @@
     margin-bottom:10px;
     background:#282a36;
     padding:12px 25px;
+  }
+  .not-found-text{
+    color:#f8f8f2;
+    margin-top:10%;
+    font-size:2.5em;
   }
   .list-header{
     border-radius:0px;

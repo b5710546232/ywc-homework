@@ -5,6 +5,7 @@
         </div>
         <section class="container" style="">
             <h1>SEMI_FINAL ROUND</h1>
+            <h2 class="sub-header">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h2>
             <p>การสัมภาษณ์จะจัดขึ้นใน <span class="high-light underline">วันที่ 26 พฤศจิกายน 2560 ณ อาคาร ซี.พี.ทาวเวอร์ 1 (สีลม)</span> </p>
             <p>ซึ่งจะแบ่งออกเป็น 2 รอบ คือ <span class="high-light underline">รอบช่วงเช้าตั้งแต่เวลา 9.00 น. ถึง 12.00 น.</span> และ รอบช่วงบ่ายตั้งแต่เวลา 13.00 น. ถึง 18.00 น.</p>
             <h2 class="text-left">สิ่งที่ต้องเตรียมมาในวันสัมภาษณ์</h2>
@@ -75,11 +76,15 @@
     }
     h1{
         color:#bd93f9;
-        margin: 40px 0;
+        margin-top:30px;
     }
     h2 {
         color:#bd93f9;
         margin: 30px 0;
+        font-size:1.6em;
+    }
+    .sub-header{
+        margin-top:0px!important;
     }
     .high-light{
         color:#8be9fd;
