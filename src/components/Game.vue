@@ -33,13 +33,13 @@
     export default {
         name: 'Game',
         mounted() {
-         this.initGame()
-         var options = {
-        strings: ["","<i>มาพิมพ์ชื่อ เพื่อนๆของคุณกัน</i>", "พร้อมแล้ว ลุย!"],
-        typeSpeed: 100,
-        showCursor:true,
-        backSpeed:50
-        }
+            this.initGame()
+            var options = {
+                strings: ["","<i>มาพิมพ์ชื่อ เพื่อนๆของคุณกัน</i>", "พร้อมแล้ว ลุย!"],
+                typeSpeed: 100,
+                showCursor:true,
+                backSpeed:50
+            }
 
         var typed = new Typed(".header-typed", options);
         },

@@ -78,12 +78,12 @@
           console.warn('searchText',searchText)
           let joinedString = 
           (
-            interviewee.firstName.trim()
-          + interviewee.lastName.trim()
-          + interviewee.interviewRef.trim()
-          + interviewee.major.trim()
+            interviewee.firstName.toLowerCase().trim()
+          + interviewee.lastName.toLowerCase().trim()
+          + interviewee.interviewRef.toLowerCase().trim()
+          + interviewee.major.toLowerCase().trim()
           )
-          return (joinedString).includes(searchText)
+          return (joinedString).includes(searchText.toLowerCase())
         })
       }
     },
