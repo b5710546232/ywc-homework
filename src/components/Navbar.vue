@@ -61,10 +61,10 @@ export default {
   }
   
   .nav-link{
-    color:#bd93f9!important;
+    color:#8be9fd!important;
   }
   .nav-link:hover{
-    color:#8be9fd!important;
+    color:#77c7d8!important;
   }
   .bg-inverse{
     /*background-color:transparent!important; */
