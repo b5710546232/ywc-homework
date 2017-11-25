@@ -30,7 +30,7 @@
             </ul>
 
             <p class="text-left ps">
-                <span class="high-light">หมายเหตุ:</span> สำหรับน้อง ๆ ที่ไม่สะดวกเดินทางมาสัมภาษณ์ที่อาคาร CP Tower สีลม ให้ Inbox มาทาง<a href="https://www.facebook.com/ywcth" target="_blank">เพจเฟสบุ๊ค Young Webmaster Camp</a> ภายในวันที่ 20 พฤศจิกายน 2560
+                <span class="high-light">หมายเหตุ:</span> สำหรับน้อง ๆ ที่ไม่สะดวกเดินทางมาสัมภาษณ์ที่อาคาร CP Tower สีลม ให้ Inbox มาทาง <a href="https://www.facebook.com/ywcth" target="_blank">เพจเฟสบุ๊ค Young Webmaster Camp</a> ภายในวันที่ 20 พฤศจิกายน 2560
             </p>
 
         </section>
